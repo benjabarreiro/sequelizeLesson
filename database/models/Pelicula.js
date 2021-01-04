@@ -1,16 +1,28 @@
-module.exports = (sequelize, DataTypes) => {
-    let alias = "Peliculas";
+module.exports = (sequelize, dataTypes) => {
+    let alias = "Pelicula";
     let cols = {
         id: {
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         title: {
-            type: DataTypes.STRING
+            type: dataTypes.STRING
+        },
+        awards: {
+            type: dataTypes.INTEGER
+        },
+        rating: {
+            type: dataTypes.DOUBLE
         },
         length: {
-            type: DataTypes.INTEGER
+            type: dataTypes.INTEGER
+        },
+        genre_id: {
+            type: dataTypes.INTEGER
+        },
+        release_date: {
+            type: dataTypes.DATE
         }
     };
     let config = {
@@ -21,6 +33,21 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     const Pelicula = sequelize.define(alias, cols, config);
+
+    Pelicula.associate = function(models) {
+        Pelicula.belongsTo(models.Genero, {
+            as: "generos",
+            foreignKey: "genre_id"
+        });
+
+        Pelicula.belongsToMany(models.Actor, {
+            as: "actores",
+            through: "actor_movie",
+            foreignKey: "movie_id",
+            otherKey: "actor_id",
+            timestamps: false
+        });
+    }
 
     return Pelicula;
 }
