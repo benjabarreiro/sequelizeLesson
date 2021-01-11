@@ -1,4 +1,4 @@
-let db = require("../database/models/index.js");
+let db = require("../database/models/index");
 
 let moviesController = {
     list: function(req, res){
@@ -81,16 +81,17 @@ let moviesController = {
         db.Peliculas.update({
             title: req.body.title,
             rating: req.body.rating,
-            awards: req.body.awards,
+            length: req.body.length,
             release_date: req.body.release_date,
-            length: req.body.length
-        }, {
+            awards: req.body.awards
+        },
+        {
             where: {
                 id: req.params.id
             }
         })
 
-        res.redirect("movies/edit/" + req.params.id);
+        res.redirect("/movies/edit/" + req.params.id);
     }
 };
 

@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = "Genero";
+    let alias = "Generos";
     let cols = {
         id: {
             type: dataTypes.INTEGER,
@@ -18,7 +18,7 @@ module.exports = (sequelize, dataTypes) => {
     const Genero = sequelize.define(alias, cols, config);
 
     Genero.associate = function(models) {
-        Genero.hasMany(models.Pelicula, {
+        Genero.hasMany(models.Peliculas, {
             as: "peliculas",
             foreignKey: "genre_id"
         })

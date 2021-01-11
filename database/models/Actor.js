@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = "Actor";
+    let alias = "Actores";
     let cols = {
         id: {
             type: dataTypes.INTEGER,
@@ -31,7 +31,7 @@ module.exports = (sequelize, dataTypes) => {
     }
 
     Actor.associate = function(models) {
-        Actor.belongsToMany(models.Pelicula, {
+        Actor.belongsToMany(models.Peliculas, {
             as: "peliculas",
             through: "actor_movie",
             foreignKey: "actor_id",

@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1><%= pelicula.title %> </h1>
+    <a href="/movies/edit/<%= pelicula.id %> ">Editar Pelicula</a>
     <form action="/movies/delete/<%= pelicula.id %> " method="POST">
         <button type="submit">Delete</button>
     </form>
